@@ -6,13 +6,12 @@
 2. Lakh Dataset: https://colinraffel.com/projects/lmd/
 3. Colab FAQ: https://research.google.com/colaboratory/faq.html
 
-#### Set up Magenta environment:
+### Set up Magenta environment:
 
 [https://github.com/tensorflow/magenta/blob/master/README.md](https://github.com/tensorflow/magenta/blob/master/README.md)
 
-#### Generating from pre-trained model: MelodyRNN
-
-###### What MelodyRNN is doing: generating monophonic melodies.
+### Generating from pre-trained model: MelodyRNN
+##### What MelodyRNN is doing: generating monophonic melodies.
 
 [https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn)
 
@@ -22,19 +21,16 @@
 
 This will take less than a minute to generate 10 pieces.
 
-#### Generating from pre-trained model: ImprovRNN
+### Generating from pre-trained model: ImprovRNN
+##### What ImprovRNN is doing: generating melodies that go over a certain chord progression.
 
-###### What ImprovRNN is doing: generating melodies that go over a certain chord progression.
+### Generating from pre-trained model: DrumsRNN
+##### What DrumsRNN is doing: generating drum beats.
 
-#### Generating from pre-trained model: DrumsRNN
-
-###### What DrumsRNN is doing: generating drum beats.
-
-#### Training your own model: MelodyRNN
-#### Using Paperspace or NYU's HPC
-#### Generating from pre-trained model: MusicVAE (with Colab notebook)
-
-###### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
+### Training your own model: MelodyRNN
+### Using Paperspace or NYU's HPC
+### Generating from pre-trained model: MusicVAE (with Colab notebook)
+##### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
 
 
 ## Assignment
