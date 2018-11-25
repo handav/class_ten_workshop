@@ -3,3 +3,4 @@ lakh
 lookback_rnn.mag
 .DS_Store
 generated
+notesequences.tfrecord
