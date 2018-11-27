@@ -4,3 +4,6 @@ lookback_rnn.mag
 .DS_Store
 generated
 notesequences.tfrecord
+paperspace.md
+thumbpiano.m4a
+sequence_examples/
