@@ -10,24 +10,69 @@
 
 [https://github.com/tensorflow/magenta/blob/master/README.md](https://github.com/tensorflow/magenta/blob/master/README.md)
 
-### Generating from pre-trained model: MelodyRNN
-##### What MelodyRNN is doing: generating monophonic melodies.
+## Generating from pre-trained model: MelodyRNN
+#### What MelodyRNN is doing: generating monophonic melodies.
 
 [https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn)
 
 1. Download a .mag bundle file from the above link. We'll be using lookback_rnn. A .mag file is a format that bundles the model checkpoint, metagraph, and some model metadata into one file.
 2. Make an output folder if there is not one already. We'll be using ./generated/melody_rnn
-3. Type this command into terminal: `melody_rnn_generate --config='lookback_rnn' --bundle_file=lookback_rnn.mag --output_dir=./generated/melody_rnn --num_outputs=10 --num_steps=128 --primer_melody="[60]"`
+3. Type this command into terminal: 
+
+```
+melody_rnn_generate --config='lookback_rnn' --bundle_file=lookback_rnn.mag --output_dir=./generated/melody_rnn --num_outputs=10 --num_steps=128 --primer_melody="[60]"
+```
 
 This will take less than a minute to generate 10 pieces.
 
-### Generating from pre-trained model: ImprovRNN
-##### What ImprovRNN is doing: generating melodies that go over a certain chord progression.
+## Generating from pre-trained model: ImprovRNN
+#### What ImprovRNN is doing: generating melodies that go over a certain chord progression.
 
-### Generating from pre-trained model: DrumsRNN
-##### What DrumsRNN is doing: generating drum beats.
+1. Download the chord_pitches_improv bundle file (.mag file) from [https://github.com/tensorflow/magenta/tree/master/magenta/models/improv_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/improv_rnn).
 
-### Training your own model: MelodyRNN
+2. In terminal, type:
+
+```
+improv_rnn_generate \
+--config='chord_pitches_improv' \
+--bundle_file=chord_pitches_improv.mag \
+--output_dir=./generated/improv_rnn \
+--num_outputs=10 \
+--primer_melody="[60]" \
+--backing_chords="C G Am F C G Am F" \
+--render_chords
+```
+
+*Note*: the '\' character is to format the command so the parameters are each on their own line. You can also type the command in all at once without those characters, like we did to generate from MelodyRNN. 
+
+The primer melody argument will give a starting note or melody to the model. The backing chords are the chords you want the model to generate a melody for. You can change these two parameters to get interesting melodies.
+
+Let's try priming it with Twinkle Twinkle Little Star over the chords from 'I will Surivive':
+
+```
+improv_rnn_generate \
+--config='chord_pitches_improv' \
+--bundle_file=chord_pitches_improv.mag \
+--output_dir=./generated/improv_rnn \
+--num_outputs=10 \
+--primer_melody="[60, -2, 60, -2, 67, -2, 67, -2]" \
+--backing_chords="Am Dm G C F Bdim E E" \
+--render_chords
+```
+
+From the documentation:
+
+"This will generate a melody starting with a middle C over the chord progression C G Am F, where each chord lasts one bar and the progression is repeated twice. If you'd like, you can supply a longer priming melody using a string representation of a Python list. The values in the list should be ints that follow the melodies_lib.Melody format (-2 = no event, -1 = note-off event, values 0 through 127 = note-on event for that MIDI pitch). For example --primer_melody="[60, -2, 60, -2, 67, -2, 67, -2]" would prime the model with the first four notes of Twinkle Twinkle Little Star. Instead of using --primer_melody, we can use --primer_midi to prime our model with a melody stored in a MIDI file. For example, --primer_midi=<absolute path to magenta/models/melody_rnn/primer.mid> will prime the model with the melody in that MIDI file.
+
+You can modify the backing chords as you like; Magenta understands most basic chord types e.g. "A13", "Cdim", "F#m7b5". The --steps_per_chord option can be used to control the chord duration."
+
+
+## Generating from pre-trained model: DrumsRNN
+#### What DrumsRNN is doing: generating drum beats.
+
+
+
+## Training your own model: MelodyRNN
 
 [https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn)
 
@@ -100,13 +145,13 @@ You can change the primer_melody argument to get different results based on that
 
 "We can use --primer_melody to specify a priming melody using a string representation of a Python list. The values in the list should be ints that follow the melodies_lib.Melody format (-2 = no event, -1 = note-off event, values 0 through 127 = note-on event for that MIDI pitch). For example --primer_melody="[60, -2, 60, -2, 67, -2, 67, -2]" would prime the model with the first four notes of Twinkle Twinkle Little Star. Instead of using --primer_melody, we can use --primer_midi to prime our model with a melody stored in a MIDI file. For example, --primer_midi=<absolute path to magenta/models/shared/primer.mid> will prime the model with the melody in that MIDI file. If neither --primer_melody nor --primer_midi are specified, a random note from the model's note range will be chosen as the first note, then the remaining notes will be generated by the model. In the example below we prime the melody with --primer_melody="[60]", a single note-on event for the note C4."
 
-### Colab Notebooks
+## Colab Notebooks
 
-Make sure you are using the GPU (go to Edit -> Notebook Settings to change this). Colab offers up to 12 hours of free GPU computation.
+Make sure you are using the GPU (go to Edit -> Notebook Settings to change this). For the record, Colab has limits on both GPU time and storage, so they are better for quick interaction than long-term training (at the moment).
 
 First, let's check out the basic Colab intro: [https://colab.research.google.com/notebooks/welcome.ipynb](https://colab.research.google.com/notebooks/welcome.ipynb)
 
-### Generating from pre-trained model: MusicVAE (with Colab notebook)
+## Generating from pre-trained model: MusicVAE (with Colab notebook)
 ##### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
 
 Copy the [MusicVAE Colab notebook](https://colab.research.google.com/notebooks/magenta/music_vae/music_vae.ipynb) to your drive with the 'Copy to Drive' button.
@@ -120,7 +165,7 @@ Continue to explore these models (or a different one, if you're feeling ambitiou
 
 * Don't be afraid to explore the other models we didn't get to in class! Working with them is very similar to what we did today, and each has its own walk-through: [https://github.com/tensorflow/magenta/tree/master/magenta/models](https://github.com/tensorflow/magenta/tree/master/magenta/models)
 
-* You can look at the PolyphonyRNN model, which is very similar to MelodyRNN, but it generates polyphonic music.
+* You can look at the PolyphonyRNN model, which is very similar to MelodyRNN, but it generates polyphonic music (meaning it generates more than one note at a time).
 
 * For advanced exploration in training the MelodyRNN model, you can try changing the hyperparameters (the --hparams argument): try changing the batch size and rnn layer sizes and see what happens! (Remember to use the same values when generating from the model).
 
