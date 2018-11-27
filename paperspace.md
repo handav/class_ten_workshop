@@ -82,19 +82,25 @@ mkdir train_melodyrnn
 
 ## Transferring your local files, re-downloading .mag file
 
-9. Now, you need to get your code and files to the Paperspace machine.
+Now, you need to get your code and files to the Paperspace machine. To train the MelodyRNN, you'll need your SequenceExamples (in the sequence_examples folder) and the lookback_rnn.mag file.
 
-To train the MelodyRNN, you'll need:
-    * your SequenceExamples (sequence_examples folder)
-    * the lookback_rnn.mag file (which you can download directly by typing ```wget http://download.magenta.tensorflow.org/models/lookback_rnn.mag```).
+9. Download the lookback_rnn.mag file directly by typing:
 
-You can send files and folders to your Paperspace machine with a protocol called SCP (Secure Copy Protocol). You can send a folder (for example, your sequence_examples folder) by typing: 
+```wget http://download.magenta.tensorflow.org/models/lookback_rnn.mag```
+
+10. You also need your SequenceExamples. You can send files and folders to your Paperspace machine with a protocol called SCP (Secure Copy Protocol). You can send a folder (for example, your sequence_examples folder) by typing: 
 
 ```
-scp -r ./sequence_examples/ paperspace@[YourPublicIP]:./Desktop/train_melodyrnn/
+scp -r ./sequence_examples/ paperspace@[YourPublicIP]:./train_melodyrnn/
 ```
 
-This sends the 'sequence_examples' folder to the paperspace machine's Desktop.
+This sends the 'sequence_examples' folder to the paperspace machine's train_melodyrnn/ project folder. 
+
+If you get an error, make sure the path on both your local machine and Paperspace are right. You can check your path by typing:
+
+```
+pwd
+```
 
 
 ## Training a model
