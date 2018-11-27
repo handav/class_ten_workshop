@@ -43,7 +43,7 @@ improv_rnn_generate \
 --render_chords
 ```
 
-*Note*: the '\' character is to format the command so the parameters are each on their own line. You can also type the command in all at once without those characters, like we did to generate from MelodyRNN. 
+*Note*: the \ character is to format the command so the parameters are each on their own line. You can also type the command in all at once without those characters, like we did to generate from MelodyRNN. 
 
 The primer melody argument will give a starting note or melody to the model. The backing chords are the chords you want the model to generate a melody for. You can change these two parameters to get interesting melodies.
 
@@ -70,7 +70,25 @@ You can modify the backing chords as you like; Magenta understands most basic ch
 ## Generating from pre-trained model: DrumsRNN
 #### What DrumsRNN is doing: generating drum beats.
 
+1. Download the drum_kit bundle file (.mag file) from [https://github.com/tensorflow/magenta/tree/master/magenta/models/drums_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/drums_rnn).
 
+2. In terminal, type:
+
+```
+drums_rnn_generate \
+--config='drum_kit' \
+--bundle_file=drum_kit_rnn.mag \
+--output_dir=./generated/drums_rnn \
+--num_outputs=10 \
+--num_steps=128 \
+--primer_drums="[(36,)]"
+```
+
+*Note*: Drums in MIDI are a little different! Channel 10 in MIDI is reserved for percussion, so the MIDI notes might seem like they overlap with other instrument notes, but they don't. See more (and get the drum notes) here: [https://en.wikipedia.org/wiki/General_MIDI#Percussive](https://en.wikipedia.org/wiki/General_MIDI#Percussive).
+
+From the documentation:
+
+"This will generate a drum track starting with a bass drum hit. If you'd like, you can also supply priming drums using a string representation of a Python list. The values in the list should be tuples of integer MIDI pitches representing the drums that are played simultaneously at each step. For example --primer_drums="[(36, 42), (), (42,)]" would prime the model with one step of bass drum and hi-hat, then one step of rest, then one step of just hi-hat. Instead of using --primer_drums, we can use --primer_midi to prime our model with drums stored in a MIDI file."
 
 ## Training your own model: MelodyRNN
 
@@ -147,21 +165,21 @@ You can change the primer_melody argument to get different results based on that
 
 ## Colab Notebooks
 
-Make sure you are using the GPU (go to Edit -> Notebook Settings to change this). For the record, Colab has limits on both GPU time and storage, so they are better for quick interaction than long-term training (at the moment).
-
 First, let's check out the basic Colab intro: [https://colab.research.google.com/notebooks/welcome.ipynb](https://colab.research.google.com/notebooks/welcome.ipynb)
 
+Make sure you are using the GPU (go to Edit -> Notebook Settings to change this). For the record, Colab has limits on both GPU time and storage, so they are better for quick interaction than long-term training (at the moment).
+
 ## Generating from pre-trained model: MusicVAE (with Colab notebook)
-##### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
+#### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
 
 Copy the [MusicVAE Colab notebook](https://colab.research.google.com/notebooks/magenta/music_vae/music_vae.ipynb) to your drive with the 'Copy to Drive' button.
 
 
 ## Assignment
 
-Continue to explore these models (or a different one, if you're feeling ambitious). You can either generate something from a pre-trained model, train your own model and generate from it, or use Onsets and Frames to transcribe some pieces. You'll show these in class next week (quick 3-4 minutes each). 
+Continue to explore these models (or a different one, if you're feeling ambitious). You can generate something from a pre-trained model, train your own model and generate from it, use Onsets and Frames to transcribe some pieces, or anything else as long as it involves one of the Magenta models. You'll show these in class next week (quick 3-4 minutes each). 
 
-## Additional Notes and Things to Do
+## Additional Notes, Suggested Things to Do
 
 * Don't be afraid to explore the other models we didn't get to in class! Working with them is very similar to what we did today, and each has its own walk-through: [https://github.com/tensorflow/magenta/tree/master/magenta/models](https://github.com/tensorflow/magenta/tree/master/magenta/models)
 
