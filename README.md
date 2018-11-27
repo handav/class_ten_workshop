@@ -43,7 +43,7 @@ improv_rnn_generate \
 --render_chords
 ```
 
-*Note*: the \ character is to format the command so the parameters are each on their own line. You can also type the command in all at once without those characters, like we did to generate from MelodyRNN. 
+**Note**: the \ character is to format the command so the parameters are each on their own line. You can also type the command in all at once without those characters, like we did to generate from MelodyRNN. 
 
 The primer melody argument will give a starting note or melody to the model. The backing chords are the chords you want the model to generate a melody for. You can change these two parameters to get interesting melodies.
 
@@ -84,7 +84,7 @@ drums_rnn_generate \
 --primer_drums="[(36,)]"
 ```
 
-*Note*: Drums in MIDI are a little different! Channel 10 in MIDI is reserved for percussion, so the MIDI notes might seem like they overlap with other instrument notes, but they don't. See more (and get the drum notes) here: [https://en.wikipedia.org/wiki/General_MIDI#Percussive](https://en.wikipedia.org/wiki/General_MIDI#Percussive).
+**Note**: Drums in MIDI are a little different! Channel 10 in MIDI is reserved for percussion, so the MIDI notes might seem like they overlap with other instrument notes, but they don't. See more (and get the drum notes) here: [https://en.wikipedia.org/wiki/General_MIDI#Percussive](https://en.wikipedia.org/wiki/General_MIDI#Percussive).
 
 From the documentation:
 
@@ -94,7 +94,9 @@ From the documentation:
 
 [https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn)
 
-1. Convert MIDI files into NoteSequences. NoteSequences are protocol buffers, or a way to serialize data. Serializing data helps store and work with large data structures/files more efficiently.
+**1. Convert MIDI files into NoteSequences.**
+
+NoteSequences are protocol buffers, or a way to serialize data. Serializing data helps store and work with large data structures/files more efficiently.
 
 To convert your MIDI files, type this command into terminal (change your input directory as needed):
 
@@ -109,9 +111,11 @@ where input_dir is the directory of your MIDI files (it can have child folders) 
 
 This command will take a long time (>1 hour) on the entire Clean Midi Lakh dataset (--input_dir=clean_midi). You can also input one musician folder (--input_dir=clean_midi/Nirvana). This will take about 1 minute on a folder with about 150 MIDI files. If you have your own dataset, your input_dir will be the name of the folder containing your data.
 
-*NOTE*: corrupt or poorly formatted MIDI files will be skipped at this stage.
+**Note**: corrupt or poorly formatted MIDI files will be skipped at this stage.
 
-2. Convert NoteSequences to SequenceExamples. Each SequenceExample is a Tensorflow-specific format which contains a sequence of inputs and a sequence of labels, and is representing a melody. The following command extracts melodies from the NoteSequences and saves them in SequenceExample format. We'll be using lookback_rnn as our config.
+**2. Convert NoteSequences to SequenceExamples.**
+
+Each SequenceExample is a Tensorflow-specific format which contains a sequence of inputs and a sequence of labels, and is representing a melody. The following command extracts melodies from the NoteSequences and saves them in SequenceExample format. We'll be using lookback_rnn as our config.
 
 ```
 melody_rnn_create_dataset \
@@ -121,7 +125,7 @@ melody_rnn_create_dataset \
 --eval_ratio=0.10
 ```
 
-3. Train the model
+**3. Train the model**
 
 ```
 melody_rnn_train \
@@ -138,7 +142,7 @@ This will probably take about 5-6 hours on your local computer (using 20000 step
 
 Checkpoints are saved (default directory is /tmp/melody_rnn/logdir/run1/train/).
 
-4. Generate from the model
+**4. Generate from the model**
 
 This is very similar to generating from the MelodyRNN model earlier, except instead of a .mag file that includes a model checkpoint, we're using our model's checkpoint instead. We can see that the checkpoints are in the run_dir folder by typing in terminal:
 
