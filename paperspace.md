@@ -21,8 +21,59 @@ Paperspace: https://www.paperspace.com/
 scp -r ./melody_rnn/ paperspace@[YourPublicIP]:./Desktop/
 ```
 
-8. You'll also need to install Magenta on this machine. Because you have a GPU now, you'll need to install magenta-gpu:
+8. You'll also need to install Magenta on this machine. First, you'll need to install Conda. Get the installer script:
+
+```
+wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh
+```
+
+Then install it:
+
+```
+bash Miniconda2-latest-Linux-x86_64.sh
+```
+
+Press enter and type 'yes' when prompted to accept the agreement.
+
+Type this command to make sure those changes are seen by the current terminal window:
+
+```
+source ~/.bashrc
+```
+
+Make a new Conda environment ('magenta' here is the name of the conda environment):
+
+```
+conda create -n magenta python=2.7 jupyter
+```
+
+Activate that Conda environment:
+
+```
+source activate magenta
+```
+
+Finally, install the magenta package. Because you have a GPU now, you'll need to install magenta-gpu:
 
 ```
 pip install magenta-gpu
 ```
+
+You may also need to run these three commands if you run into errors:
+
+```
+sudo apt-get update
+```
+
+and
+
+```
+sudo apt-get install gcc
+```
+
+and
+
+```
+sudo apt-get install build-essential libasound2-dev libjack-dev
+```
+
