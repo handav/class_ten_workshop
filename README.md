@@ -182,7 +182,9 @@ Make sure you are using the GPU (go to Edit -> Notebook Settings to change this)
 ## 7. Generating from pre-trained model: MusicVAE (with Colab notebook)
 #### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
 
-Copy the [MusicVAE Colab notebook](https://colab.research.google.com/notebooks/magenta/music_vae/music_vae.ipynb) to your drive with the 'Copy to Drive' button.
+Copy the [MusicVAE Colab notebook](https://colab.research.google.com/drive/1POmWhBoq_ECPCRZeH8R_oXtKTIjiXyWl) to your drive with the 'Copy to Drive' button. (This is very close to the original Magenta version, with a few lines changed to be able to download our final MIDI.)
+
+We'll just be looking at the 16-bar melody models.
 
 
 ## Assignment

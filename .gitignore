@@ -8,3 +8,6 @@ thumbpiano.m4a
 sequence_examples/
 chord_pitches_improv.mag
 drum_kit_rnn.mag
+.ipynb_checkpoints/
+ITP_Gen_Music_MusicVAE.ipynb
+convert_to_mp3/interpolation.mp3
