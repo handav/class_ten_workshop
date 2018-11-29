@@ -173,18 +173,30 @@ If you have a bigger dataset, or want to train models faster, you'll need a bett
 
 Link to the Paperspace tutorial: [https://github.com/handav/class_ten_workshop/blob/master/paperspace.md](https://github.com/handav/class_ten_workshop/blob/master/paperspace.md)
 
-## 6. Colab Notebooks
+## 6. Intro to latent space models
+
+Short discussion on latent space models and MusicVAE.
+
+## 7. MusicVAE and intro to with Colab notebook
+#### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
 
 First, let's check out the basic Colab intro: [https://colab.research.google.com/notebooks/welcome.ipynb](https://colab.research.google.com/notebooks/welcome.ipynb)
 
 Make sure you are using the GPU (go to Edit -> Notebook Settings to change this). For the record, Colab has limits on both GPU time and storage, so they are better for quick interaction than long-term training (at the moment).
 
-## 7. Generating from pre-trained model: MusicVAE (with Colab notebook)
-#### What MusicVAE is doing: allows you to generate melodies by interpolating between two MIDIs.
-
 Copy the [MusicVAE Colab notebook](https://colab.research.google.com/drive/1POmWhBoq_ECPCRZeH8R_oXtKTIjiXyWl) to your drive with the 'Copy to Drive' button. (This is very close to the original Magenta version, with a few lines changed to be able to download our final MIDI.)
 
 We'll just be looking at the 16-bar melody models.
+
+## 8. (If time, optional) Converting MIDIs to mp3
+
+We might not get to this, but the code to convert your MIDI to an mp3 with a nicer-sounding soundfont is in the convert_to_mp3 folder. You can run the command by typing:
+
+```
+./MIDI_to_mp3.sh interpolation.mid
+```
+
+You will need to install fluidsynth and lame to use this.
 
 
 ## Assignment
