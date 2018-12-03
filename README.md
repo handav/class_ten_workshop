@@ -190,7 +190,7 @@ We'll just be looking at the 16-bar melody models.
 
 ## 8. (If time, optional) Converting MIDIs to mp3
 
-We might not get to this, but the code to convert your MIDI to an mp3 with a nicer-sounding soundfont is in the convert_to_mp3 folder. You can run the command by typing:
+We might not get to this, but the code to convert your MIDI to an mp3 with a nicer-sounding soundfont is in the convert_to_mp3 folder. You can run the command by typing (change the MIDI file name if necessary):
 
 ```
 ./MIDI_to_mp3.sh interpolation.mid

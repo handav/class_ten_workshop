@@ -56,7 +56,20 @@ Finally, install the magenta package. Because you have a GPU now, you'll need to
 pip install magenta-gpu
 ```
 
-You may also need to run these three commands if you run into errors:
+*IF YOU HAVE ERRORS*:
+
+1. First, try:
+
+```
+pip install tensorflow
+```
+and then:
+
+```
+pip install magenta-gpu
+```
+
+2. If that doesn't work, try these three commands in order:
 
 ```
 sudo apt-get update
@@ -74,6 +87,14 @@ and
 sudo apt-get install build-essential libasound2-dev libjack-dev
 ```
 
+then, try this again:
+
+```
+pip install magenta-gpu
+```
+
+
+
 Finally, make a directory for your project:
 
 ```
@@ -84,11 +105,11 @@ mkdir train_melodyrnn
 
 Now, you need to get your code and files to the Paperspace machine. To train the MelodyRNN, you'll need your SequenceExamples (in the sequence_examples folder) and the lookback_rnn.mag file.
 
-9. Download the lookback_rnn.mag file directly by typing:
+9. Download the lookback_rnn.mag file directly by typing *FROM YOUR PAPERSPACE MACHINE*:
 
 ```wget http://download.magenta.tensorflow.org/models/lookback_rnn.mag```
 
-10. You also need your SequenceExamples. You can send files and folders to your Paperspace machine with a protocol called SCP (Secure Copy Protocol). You can send a folder (for example, your sequence_examples folder) by typing: 
+10. You also need your SequenceExamples. You can send files and folders to your Paperspace machine with a protocol called SCP (Secure Copy Protocol). You can send a folder (for example, your sequence_examples folder) by typing *FROM YOUR LOCAL COMPUTER*: 
 
 ```
 scp -r ./sequence_examples/ paperspace@[YourPublicIP]:./train_melodyrnn/
@@ -105,7 +126,10 @@ pwd
 
 ## Training a model
 
-10. From there, the training command is the same as before:
+10. 
+
+
+From there, the training command is the same as before:
 
 ```
 melody_rnn_train \
@@ -119,4 +143,6 @@ melody_rnn_train \
 If you get an error along the lines of 'ImportError: libcublas.so.9.0', follow the commands in the 'Add NVIDIA package repository' and 'Install CUDA and tools' sections in the 'Install Cuda with apt' section here: https://www.tensorflow.org/install/gpu#install_cuda_with_apt
 
 Where this took about 5.5-6 hours on your local machines, this will take about 3.5 hours on this machine with a GPU. Also, you can leave this running and come back to it later.
+
+11. To do: add tmux and nvidia-smi to confirm GPU, install tensorflow as solution to libculas error
 
